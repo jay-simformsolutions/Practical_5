@@ -17,13 +17,11 @@ class _SwitchWidgetState extends State<SwitchWidget> {
         isSwitched = true;
         textValue = 'Switch Button is ON';
       });
-      print('Switch Button is ON');
     } else {
       setState(() {
         isSwitched = false;
         textValue = 'Switch Button is OFF';
       });
-      print('Switch Button is OFF');
     }
   }
 
@@ -42,21 +40,22 @@ class _SwitchWidgetState extends State<SwitchWidget> {
         ),
         body: Center(
           child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center, children: [
-            Switch(
-              onChanged: toggleSwitch,
-              value: isSwitched,
-              activeColor: Colors.blue,
-              activeTrackColor: Colors.tealAccent,
-              inactiveThumbColor: Colors.deepPurple,
-              inactiveTrackColor: Colors.black38,
-            ),
-            Text(
-              '$textValue',
-              style: TextStyle(fontSize: 20),
-            )
-          ]),
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Switch(
+                  onChanged: toggleSwitch,
+                  value: isSwitched,
+                  activeColor: Colors.blue,
+                  activeTrackColor: Colors.tealAccent,
+                  inactiveThumbColor: Colors.deepPurple,
+                  inactiveTrackColor: Colors.black38,
+                ),
+                Text(
+                  '$textValue',
+                  style: TextStyle(fontSize: 20),
+                )
+              ]),
         ),
       ),
     );
