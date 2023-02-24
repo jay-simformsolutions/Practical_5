@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practical_5/AdvancedWidget/wrap_widget.dart';
+import 'package:practical_5/Hero/page1.dart';
 
 void main() {
   // TODO: implement main
@@ -11,8 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WrapWidget(),
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      home: HeroPage1(),
       //debugShowCheckedModeBanner: false,
     );
   }
