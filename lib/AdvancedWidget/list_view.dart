@@ -5,7 +5,6 @@ class ListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     const List<Choice> choices = <Choice>[
       Choice(title: 'Home', icon: Icons.home),
       Choice(title: 'Contact', icon: Icons.contacts),
@@ -25,13 +24,13 @@ class ListViewWidget extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("LISTVIEW WIDGET"),
+          title: const Text("LISTVIEW WIDGET"),
           backgroundColor: Colors.yellowAccent,
         ),
         body: ListView.builder(
           itemCount: choices.length,
-          itemBuilder: (context, index){
-            return Container(
+          itemBuilder: (context, index) {
+            return SizedBox(
               height: 100,
               child: Card(
                 child: Row(
@@ -54,5 +53,4 @@ class Choice {
   final String? title;
   final IconData? icon;
   const Choice({this.title, this.icon});
-
 }

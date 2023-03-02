@@ -34,7 +34,7 @@ class _SwitchWidgetState extends State<SwitchWidget> {
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("S W I T C H W I D G E T"),
+          title: const Text("S W I T C H W I D G E T"),
           centerTitle: true,
           backgroundColor: Colors.tealAccent,
         ),
@@ -53,7 +53,7 @@ class _SwitchWidgetState extends State<SwitchWidget> {
                 ),
                 Text(
                   '$textValue',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 )
               ]),
         ),

@@ -22,7 +22,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
       body: Column(
         children: [
           CheckboxListTile(
-            title: const Text("Agree or Not"),
+              title: const Text("Agree or Not"),
               value: _isActiveCheckBox,
               onChanged: (result) {
                 setState(() {
@@ -35,7 +35,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                 });
               }),
           Text(
-            "$string",
+            string,
             style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           )
         ],

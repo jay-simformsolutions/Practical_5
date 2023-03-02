@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TabBarWidget extends StatefulWidget{
+class TabBarWidget extends StatefulWidget {
   const TabBarWidget({Key? key}) : super(key: key);
 
   @override
   State<TabBarWidget> createState() => _TabBarWidgetState();
 }
 
-class _TabBarWidgetState extends State<TabBarWidget> with TickerProviderStateMixin{
-
+class _TabBarWidgetState extends State<TabBarWidget>
+    with TickerProviderStateMixin {
   late TabController _controller;
 
   @override
@@ -22,26 +22,25 @@ class _TabBarWidgetState extends State<TabBarWidget> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-
     return Theme(
       data: ThemeData(
         primaryColor: Colors.deepPurple[100],
       ),
       child: Scaffold(
         appBar: AppBar(
-          bottom:  TabBar(
+          bottom: TabBar(
             controller: _controller,
             //To make tabs scrollable
             isScrollable: true,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             dividerColor: Colors.grey,
             indicatorColor: Colors.tealAccent,
-           indicatorWeight: 2,
-           // indicator: BoxDecoration(
-           //   color: Colors.black38,
-           //   borderRadius: BorderRadius.circular(25),
-           // ),
-           // indicatorSize: TabBarIndicatorSize.label,
+            indicatorWeight: 2,
+            // indicator: BoxDecoration(
+            //   color: Colors.black38,
+            //   borderRadius: BorderRadius.circular(25),
+            // ),
+            // indicatorSize: TabBarIndicatorSize.label,
             tabs: [
               Tab(
                 icon: Icon(
@@ -57,8 +56,7 @@ class _TabBarWidgetState extends State<TabBarWidget> with TickerProviderStateMix
                     color: Colors.deepPurple.shade900),
               ),
               Tab(
-                icon: Icon(Icons.share,
-                    color: Colors.deepPurple.shade900),
+                icon: Icon(Icons.share, color: Colors.deepPurple.shade900),
               ),
               Tab(
                 icon: Icon(Icons.feed_outlined,
@@ -66,26 +64,20 @@ class _TabBarWidgetState extends State<TabBarWidget> with TickerProviderStateMix
               ),
             ],
           ),
-          title: Text("T A B B A R"),
+          title: const Text("T A B B A R"),
           centerTitle: true,
           backgroundColor: Colors.deepPurple[400],
         ),
         body: Column(
           children: [
-
             Expanded(
               child: TabBarView(
                 controller: _controller,
                 children: const [
-
                   FirstTab(),
-
                   SecondTab(),
-
                   ThirdTab(),
-
                   FourthTab(),
-
                   FifthTab(),
                 ],
               ),
@@ -95,8 +87,6 @@ class _TabBarWidgetState extends State<TabBarWidget> with TickerProviderStateMix
       ),
     );
   }
-
-
 }
 
 class FirstTab extends StatelessWidget {
@@ -106,7 +96,12 @@ class FirstTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple[50],
-      child: Center(child: Text("1st Tab",style: TextStyle(fontSize: 25),),),
+      child: const Center(
+        child: Text(
+          "1st Tab",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }
@@ -118,7 +113,12 @@ class SecondTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple[50],
-      child: Center(child: Text("2nd Tab",style: TextStyle(fontSize: 25),),),
+      child: const Center(
+        child: Text(
+          "2nd Tab",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }
@@ -130,7 +130,12 @@ class ThirdTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple[50],
-      child: Center(child: Text("3rd Tab",style: TextStyle(fontSize: 25),),),
+      child: const Center(
+        child: Text(
+          "3rd Tab",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }
@@ -142,7 +147,12 @@ class FourthTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple[50],
-      child: Center(child: Text("4th Tab",style: TextStyle(fontSize: 25),),),
+      child: const Center(
+        child: Text(
+          "4th Tab",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }
@@ -154,7 +164,12 @@ class FifthTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple[50],
-      child: Center(child: Text("5th Tab",style: TextStyle(fontSize: 25),),),
+      child: const Center(
+        child: Text(
+          "5th Tab",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }

@@ -11,12 +11,6 @@ class HeroPage2 extends StatelessWidget {
       ),
       body: Hero(
         tag: 'Hero',
-        child: const Center(
-          child: Icon(
-            Icons.add,
-            size: 200,
-          ),
-        ),
         flightShuttleBuilder: (flightContext, animation, flightDirection,
             fromHeroContext, toHeroContext) {
           if (flightDirection == HeroFlightDirection.push) {
@@ -27,14 +21,20 @@ class HeroPage2 extends StatelessWidget {
         },
         transitionOnUserGestures: true,
         placeholderBuilder: (context, heroSize, child) {
-          return Center(
-            child: Container(
+          return const Center(
+            child: SizedBox(
               height: 300,
               width: 300,
-              child: const CircularProgressIndicator(),
+              child: CircularProgressIndicator(),
             ),
           );
         },
+        child: const Center(
+          child: Icon(
+            Icons.add,
+            size: 200,
+          ),
+        ),
       ),
     );
   }

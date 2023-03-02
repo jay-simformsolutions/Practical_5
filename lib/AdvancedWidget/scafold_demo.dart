@@ -9,20 +9,20 @@ class ScafOld extends StatefulWidget {
 
 class _ScafOldState extends State<ScafOld> {
   int i = 0;
-  bool tf(){
-    if(i%2 == 0){
+  bool tf() {
+    if (i % 2 == 0) {
       i++;
       return true;
-    }
-    else{
+    } else {
       i++;
       return false;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      persistentFooterButtons : <Widget>[
+      persistentFooterButtons: <Widget>[
         IconButton(
           icon: const Icon(Icons.add_alert),
           tooltip: 'Show Snackbar',
@@ -57,18 +57,15 @@ class _ScafOldState extends State<ScafOld> {
       // extendBody: true,
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
-
-        leading: Icon(Icons.reddit,
-
+        leading: const Icon(
+          Icons.reddit,
         ),
         title: const Text('AppBar Demo'),
         scrolledUnderElevation: 10,
         shadowColor: Colors.red,
         surfaceTintColor: Colors.yellow,
-          toolbarOpacity: 1.0,
-          //toolbarHeight: 100,
-
-
+        toolbarOpacity: 1.0,
+        //toolbarHeight: 100,
 
         actions: <Widget>[
           IconButton(
@@ -103,38 +100,35 @@ class _ScafOldState extends State<ScafOld> {
         ],
       ),
 
-
-      body:  DefaultTabController(
+      body: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            bottom: TabBar(
+            bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.flight)),
                 Tab(icon: Icon(Icons.directions_transit)),
                 Tab(icon: Icon(Icons.directions_car)),
               ],
             ),
-            title: Text('Tabs Demo'),
+            title: const Text('Tabs Demo'),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               Icon(Icons.flight, size: 350),
               Icon(Icons.directions_transit, size: 350),
               Icon(Icons.directions_car, size: 350),
-
             ],
           ),
         ),
       ),
 
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: const FloatingActionButton(
         onPressed: null,
-          // isExtended: true,
-          child: Icon(Icons.add),
-          backgroundColor: Colors.green,
-
-        ),
+        backgroundColor: Colors.green,
+        // isExtended: true,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

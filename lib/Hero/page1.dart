@@ -17,6 +17,7 @@ class HeroPage1 extends StatelessWidget {
               Navigator.push(
                 context,
                 PageRouteBuilder(
+                  fullscreenDialog: true,
                   transitionDuration: const Duration(seconds: 5),
                   pageBuilder: (_, __, ___) => const HeroPage2(),
                 ),

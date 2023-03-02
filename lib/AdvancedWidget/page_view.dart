@@ -9,7 +9,6 @@ class PageViewWidget extends StatefulWidget {
 
 class _PageViewWidgetState extends State<PageViewWidget> {
   PageController controller = PageController();
-  int _curr = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,6 @@ class _PageViewWidgetState extends State<PageViewWidget> {
           onPageChanged: (value) {
             setState(() {
               print(value);
-              _curr = value;
             });
           },
         ),
