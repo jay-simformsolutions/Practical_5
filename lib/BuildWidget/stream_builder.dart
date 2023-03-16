@@ -11,7 +11,7 @@ class StreamBuilderStateWidget extends StatefulWidget {
 class _StreamBuilderStateWidgetState extends State<StreamBuilderStateWidget> {
   Stream<DateTime> generateNumber() async* {
     while (true) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       yield DateTime.now();
     }
   }
@@ -20,7 +20,7 @@ class _StreamBuilderStateWidgetState extends State<StreamBuilderStateWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("STREAM BUILDER"),
+        title: const Text("STREAM BUILDER"),
         centerTitle: true,
       ),
       //backgroundColor: Colors.deepPurple,
@@ -32,7 +32,7 @@ class _StreamBuilderStateWidgetState extends State<StreamBuilderStateWidget> {
                 stream: generateNumber(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.connectionState ==
                           ConnectionState.active ||
                       snapshot.connectionState == ConnectionState.done) {

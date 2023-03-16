@@ -38,16 +38,16 @@ class HomePortraitWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
+              const Expanded(
                 child: HomeCardWidget(cardText: "Card 4"),
               ),
-              Expanded(
+              const Expanded(
                 child: HomeCardWidget(cardText: "Card 5"),
               ),
               Expanded(
                 child: IconButton(
                   onPressed: () {},
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     NetworkImage(
                         scale: 10,
                         "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg"),

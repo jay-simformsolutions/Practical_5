@@ -38,19 +38,19 @@ class HomeLandscapeWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
+              const Expanded(
                 child: HomeCardWidget(
                   cardText: "Card 4",
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: HomeCardWidget(
                   cardText: "Card 5",
                 ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: ImageIcon(
+                icon: const ImageIcon(
                   NetworkImage(
                       "https://blog.logrocket.com/wp-content/uploads/2021/06/flutter-futurebuild-.png"),
                 ),

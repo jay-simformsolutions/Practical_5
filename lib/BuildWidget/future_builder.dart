@@ -49,13 +49,13 @@ class _FutureBuilderWidgetState extends State<FutureBuilderWidget> {
                 }
               },
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
                 onPressed: () {
                   generateNumbers();
                   setState(() {});
                 },
-                child: Text("Click to Get Future Response")),
+                child: const Text("Click to Get Future Response")),
           ],
         ),
       ),
