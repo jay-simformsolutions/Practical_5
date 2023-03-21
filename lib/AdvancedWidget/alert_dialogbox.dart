@@ -9,16 +9,21 @@ class AlertDialogBoxWidget extends StatefulWidget {
 }
 
 class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
-
-  showAlertDoalog(context){
-
-    Widget okButton = TextButton(onPressed: (){
-      Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const SliverAppBarWidget()));
-    }, child: const Text("Ok"));
-    Widget cnacelButton = TextButton(onPressed: (){
-      Navigator.pop(context);
-    }, child: const Text("Cancel"));
+  showAlertDoalog(context) {
+    Widget okButton = TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const SliverAppBarWidget()));
+        },
+        child: const Text("Ok"));
+    Widget cnacelButton = TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: const Text("Cancel"));
 
     AlertDialog alertDialog = AlertDialog(
       title: const Text("Practice of AlertDialog"),
@@ -30,21 +35,22 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
       ],
     );
 
-    showDialog(context: context, builder: (BuildContext context){
-      return alertDialog;
-    });
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 
   //Custom Dialog
-  callAlertDialog(){
+  callAlertDialog() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return Dialog(
             shape: RoundedRectangleBorder(
-                borderRadius:
-                BorderRadius.circular(20.0)), //this right here
-            child: Container(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: SizedBox(
               height: 200,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -68,7 +74,6 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
                           "Save",
                           style: TextStyle(color: Colors.white),
                         ),
-
                       ),
                     )
                   ],
@@ -81,21 +86,20 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
 
   //Full Scree Alert Dialog
 
-  FullScreenAlertDialog(){
+  FullScreenAlertDialog() {
     showGeneralDialog(
         context: context,
         barrierDismissible: true,
-        barrierLabel: MaterialLocalizations.of(context)
-            .modalBarrierDismissLabel,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         barrierColor: Colors.black45,
         transitionDuration: const Duration(milliseconds: 200),
-        pageBuilder: (BuildContext buildContext,
-            Animation animation,
+        pageBuilder: (BuildContext buildContext, Animation animation,
             Animation secondaryAnimation) {
           return Center(
             child: Container(
               width: MediaQuery.of(context).size.width - 10,
-              height: MediaQuery.of(context).size.height -  80,
+              height: MediaQuery.of(context).size.height - 80,
               padding: const EdgeInsets.all(20),
               color: Colors.white,
               child: Column(
@@ -113,7 +117,6 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
                       "Save",
                       style: TextStyle(color: Colors.white),
                     ),
-
                   )
                 ],
               ),
@@ -145,19 +148,18 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
                 },
                 child: const Text("Click on Me for Alert Dialog Box"),
               ),
-
               ElevatedButton(
                 onPressed: () {
                   callAlertDialog();
                 },
                 child: const Text("Click on Me for Custome Alert Dialog Box"),
               ),
-
               ElevatedButton(
                 onPressed: () {
                   FullScreenAlertDialog();
                 },
-                child: const Text("Click on Me for Full Screen Alert Dialog Box"),
+                child:
+                    const Text("Click on Me for Full Screen Alert Dialog Box"),
               ),
             ],
           ),

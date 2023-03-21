@@ -45,15 +45,18 @@ class MyApp extends StatelessWidget {
     /// functions and variable globally accessible and MaterialApp is remain
     /// throughout the App that's why we need ro wrap Provider with MaterialApp.
     print("Lazy is Called");
-    return ChangeNotifierProvider<Counter>(
-      create: (_) => Counter(),
-      lazy: true,
-      child: MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: const ProviderExample(),
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => Counter(),
+      builder: (context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+          home: const ProviderExample(),
+        );
+      },
+      //create: (_) => Counter(),
+      //lazy: true,
     );
   }
 }
