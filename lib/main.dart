@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
-import 'package:practical_5/BLoc/Cubit/counter_cubit.dart';
-
-import 'BLoc/Cubit/counter_cubit_ui.dart';
+import 'package:practical_5/BLoc/BLoc/bloc_counter_ui.dart';
+import 'package:practical_5/BLoc/BLoc/counter_bloc.dart';
 
 void main() {
   // TODO: implement main
@@ -73,29 +72,43 @@ class _MyAppState extends State<MyApp> {
     //   //lazy: true,
     // );
 
-    logger.i("Create BLoc Object by Build Method");
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) {
-          logger.wtf("Before CounterCubit0 Called");
-          return CounterCubit0();
-          logger.wtf("After CoutnerCubit0 Called now Build again");
-        }),
-        BlocProvider(
-          create: (context) {
-            logger.wtf("Before CounterCubit1 Called");
-            return CounterCubit1();
-          },
-        ),
-        BlocProvider(
-          create: (context) => CounterCubit2(),
-        ),
-        BlocProvider(
-          create: (context) => CounterCubit3(),
-        ),
-      ],
+    //   logger.i("Create BLoc Object by Build Method");
+    //   return MultiBlocProvider(
+    //     providers: [
+    //       BlocProvider(create: (context) {
+    //         logger.wtf("Before CounterCubit0 Called");
+    //         return CounterCubit0();
+    //         logger.wtf("After CoutnerCubit0 Called now Build again");
+    //       }),
+    //       BlocProvider(
+    //         create: (context) {
+    //           logger.wtf("Before CounterCubit1 Called");
+    //           return CounterCubit1();
+    //         },
+    //       ),
+    //       BlocProvider(
+    //         create: (context) => CounterCubit2(),
+    //       ),
+    //       BlocProvider(
+    //         create: (context) => CounterCubit3(),
+    //       ),
+    //     ],
+    //     child: MaterialApp(
+    //       home: const CubitCounterExample(),
+    //       theme: ThemeData(
+    //         useMaterial3: true,
+    //       ),
+    //     ),
+    //   );
+    // }
+
+    return BlocProvider(
+      create: (context) {
+        logger.e("Bloc Counter Initialize");
+        return BlocCounter();
+      },
       child: MaterialApp(
-        home: const CubitCounterExample(),
+        home: const BlocCounterUI(),
         theme: ThemeData(
           useMaterial3: true,
         ),
