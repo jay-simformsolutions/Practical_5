@@ -25,7 +25,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
           allowImplicitScrolling: true,
           scrollDirection: Axis.vertical,
           controller: controller,
-          scrollBehavior: MaterialScrollBehavior(),
+          scrollBehavior: const MaterialScrollBehavior(),
           children: const [
             Center(
               child: Text("Page One"),

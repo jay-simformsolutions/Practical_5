@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Repository Example",
         ),
       ),
@@ -23,20 +23,20 @@ class HomeScreen extends StatelessWidget {
                 if (state is LoadingState) {
                   return const CircularProgressIndicator();
                 } else if (state is LoadedState) {
-                  return SizedBox(
-                    height: 350,
-                    width: 500,
-                    child: Image.network(
-                      state.img,
-                      frameBuilder:
-                          (context, image, frame, wasSynchronouslyLoaded) {
-                        if (frame == null) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          return image;
-                        }
-                      },
-                    ),
+                  return Image.network(
+                    state.img,
+                    frameBuilder:
+                        (context, image, frame, wasSynchronouslyLoaded) {
+                      if (frame == null) {
+                        return const CircularProgressIndicator();
+                      } else {
+                        return SizedBox(
+                          height: 350,
+                          width: 500,
+                          child: image,
+                        );
+                      }
+                    },
                   );
                 } else {
                   return const Text("ERROR");
