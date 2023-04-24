@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practical_5/AdvancedWidget/silverAppBar_widget.dart';
+import 'package:practical_5/riverpod/riverpod_counter.dart';
 
 class AlertDialogBoxWidget extends StatefulWidget {
   const AlertDialogBoxWidget({Key? key}) : super(key: key);
@@ -137,6 +138,18 @@ class _AlertDialogBoxWidgetState extends State<AlertDialogBoxWidget> {
           title: const Text("ALERT DIALOG BOX"),
           centerTitle: true,
           backgroundColor: Colors.deepPurple,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => RiverPodCounterExample(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+          ),
         ),
         body: Center(
           child: Column(

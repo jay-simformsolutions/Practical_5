@@ -15,15 +15,49 @@ class CupertinoActionsheetWidget extends StatefulWidget {
       _CupertinoActionsheetWidgetState();
 }
 
-class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget> {
+class _CupertinoActionsheetWidgetState
+    extends State<CupertinoActionsheetWidget> {
+  @override
+  void initState() {
+    print('Called initState');
+    print('$mounted is called from init State');
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('Call didChangeDependencies');
+    print('$mounted from didChangeDependencies');
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant CupertinoActionsheetWidget oldWidget) {
+    print('$mounted from didUpdate');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void deactivate() {
+    print('Mounted is called');
+    print('$mounted from deactivate');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('dispose is called');
+    print('$mounted from dispose is called');
+    super.dispose();
+  }
 
   void _showAlertDialog(BuildContext context) {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         title: Column(
-          children:const [
-             Text('Alert'),
+          children: const [
+            Text('Alert'),
             Icon(
               Icons.favorite,
               color: Colors.red,
@@ -70,8 +104,9 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
               ),
             ],
           ),
-          content: const Text( "An iOS-style alert dialog.""An alert dialog informs the user about situations that require acknowledgement."
-                  " An alert dialog has an optional title, optional content, and an optional list of actions."),
+          content: const Text("An iOS-style alert dialog."
+              "An alert dialog informs the user about situations that require acknowledgement."
+              " An alert dialog has an optional title, optional content, and an optional list of actions."),
           actions: <Widget>[
             CupertinoDialogAction(
               child: const Text("Go To ScrollBbar Widget"),
@@ -79,12 +114,10 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                 Navigator.push(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) =>
-                        const ScrollbarWidget()));
+                        builder: (context) => const ScrollbarWidget()));
                 Navigator.of(context).pop();
-
-
-              },),
+              },
+            ),
             CupertinoDialogAction(
               child: const Text("Go to Indicator Widget"),
               onPressed: () {
@@ -92,15 +125,16 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                     context,
                     CupertinoPageRoute(
                         builder: (context) =>
-                        const CupertinoActivityIndicatorWidget()));
+                            const CupertinoActivityIndicatorWidget()));
                 Navigator.of(context).pop();
-
-              },),
+              },
+            ),
             CupertinoDialogAction(
               child: const Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
-              },),
+              },
+            ),
           ],
         );
       },
@@ -175,8 +209,7 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                       context,
                       CupertinoPageRoute(
                           builder: (context) =>
-                          const CupertinoActivityIndicatorWidget()));
-
+                              const CupertinoActivityIndicatorWidget()));
                 },
                 child: const Text(
                   "Get CupertinoIndicator Widget",
@@ -189,13 +222,12 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
               CupertinoButton(
                 color: CupertinoColors.systemYellow.elevatedColor,
                 onPressed: () {
-                 showAlertDialog();
+                  showAlertDialog();
                 },
                 child: const Text(
                   "Get AlertDialogBox Widget",
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -208,7 +240,6 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                   "Get SampleDialog Widget",
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -225,7 +256,6 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                   "Get ContextMenu Widget",
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -242,7 +272,6 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                   "Get Date-Time Picker Widget",
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -259,7 +288,6 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                   "Get CupertinoList Tile Widget",
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -268,7 +296,7 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                 onPressed: () {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
-                      builder: (context) =>  CupertinoTabScaffoldWidget(),
+                      builder: (context) => CupertinoTabScaffoldWidget(),
                     ),
                   );
                 },
@@ -276,7 +304,6 @@ class _CupertinoActionsheetWidgetState extends State<CupertinoActionsheetWidget>
                   "Get CupertinoTabScaffold Widget",
                 ),
               ),
-
             ],
           ),
         ),

@@ -5,7 +5,7 @@ void backgroundService() {
   print('This is from Back Ground Service');
 }
 
-void main() async {
+void main(List<String> arguments) async {
   // final isolate = await Isolate.spawn((message) {
   //   print('Recieved Message : $message');
   // }, {});

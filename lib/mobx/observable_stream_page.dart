@@ -22,6 +22,8 @@ class ObservableStreamExample extends StatelessWidget {
               style: TextStyle(color: Colors.grey),
             ),
             Observer(
+              warnWhenNoObservables: true,
+              name: 'Jay',
               builder: (_) {
                 final value = streamObservabel.observableStream.value;
                 return Text(

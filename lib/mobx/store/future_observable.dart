@@ -7,10 +7,7 @@ class ObservableFutureExample = _ObservableFutureExample
     with _$ObservableFutureExample;
 
 abstract class _ObservableFutureExample with Store {
-  //
-  // late ObservableFuture<List> observableFuture;
-
-  late ObservableStream observableStream;
+  late ObservableFuture<List> observableFuture;
 
   @observable
   List<dynamic> response = [];
@@ -18,8 +15,8 @@ abstract class _ObservableFutureExample with Store {
   Future<void> fetchResponse() async {
     FetchResponse fetchResponse = FetchResponse();
 
-    //observableFuture = ObservableFuture(fetchResponse.fetchData());
-    //response = await observableFuture;
+    observableFuture = ObservableFuture(fetchResponse.fetchData());
+    response = await observableFuture;
     response = await fetchResponse.fetchData();
   }
 }
