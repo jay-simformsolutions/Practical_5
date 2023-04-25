@@ -39,15 +39,15 @@ class RiverPodCounterExample extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(secondCounterProvider, (previous, next) {
-      if (next == 5) {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const AlertDialogBoxWidget(),
-        ));
-      } else {
-        print("NEXT : $next \nPrevious : $previous");
-      }
-    });
+    // ref.listen(secondCounterProvider, (previous, next) {
+    //   if (next == 5) {
+    //     Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (context) => const AlertDialogBoxWidget(),
+    //     ));
+    //   } else {
+    //     print("NEXT : $next \nPrevious : $previous");
+    //   }
+    // });
     return Scaffold(
       appBar: AppBar(
         title: const Text('RiverPod Counter Example'),

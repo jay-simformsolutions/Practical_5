@@ -42,6 +42,8 @@ class Clock extends ChangeNotifier {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final dateTime = context.watch<Clock>().dateTime;

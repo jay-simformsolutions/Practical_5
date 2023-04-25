@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:practical_5/riverpod/future_riverpod_example.dart';
 import 'package:practical_5/riverpod/riverpod_counter.dart';
+import 'package:practical_5/riverpod/state_notifier_provider_example.dart';
+import 'package:practical_5/riverpod/state_preserve/state_preserve_example.dart';
+import 'package:practical_5/riverpod/stream_riverpod_example.dart';
+import 'package:practical_5/riverpod/update_parent/update_parent.dart';
 
 class RiverPodCommonPage extends StatelessWidget {
   const RiverPodCommonPage({Key? key}) : super(key: key);
@@ -13,19 +17,26 @@ class RiverPodCommonPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const RiverPodCounterExample()));
-                },
-                child: const Text('StateNotifier Example')),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const RiverPodCounterExample()));
+              },
+              child: const Text('StateNotifier Example'),
+            ),
             ElevatedButton(
-                onPressed: () {},
-                child: const Text('StateNotifierProvider Example')),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const StateNotifierProviderExample()));
+              },
+              child: const Text('StateNotifierProvider Example'),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -36,8 +47,31 @@ class RiverPodCommonPage extends StatelessWidget {
               child: const Text('FutureProvider Example'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const StreamRiverPodExample()));
+              },
               child: const Text('StreamProvider Example'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const StatePreserveExample()));
+              },
+              child: const Text('State Preserve'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const UpdateParentData()));
+              },
+              child: const Text('Update Child to Parent'),
             ),
           ],
         ),

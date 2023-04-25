@@ -11,58 +11,65 @@ class FutureRiverPodExample extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(userDataProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Future RiverPod Example"),
       ),
-      body: data.when(
-        data: (data) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: data.length,
-                      itemBuilder: (_, index) {
-                        return Card(
-                          color: Colors.blue,
-                          elevation: 4,
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          child: ListTile(
-                            title: Text(
-                              data[index].firstname,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
+      body: RefreshIndicator(
+        onRefresh: () => ref.refresh(userDataProvider.future),
+        child: Consumer(
+          builder: (context, ref, child) {
+            final data = ref.watch(userDataProvider);
+            return data.when(
+              data: (data) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (_, index) {
+                            return Card(
+                              color: Colors.blue,
+                              elevation: 4,
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              child: ListTile(
+                                title: Text(
+                                  data[index].firstname,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  data[index].lastname,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                trailing: CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: NetworkImage(
+                                    data[index].avatar,
+                                  ),
+                                ),
                               ),
-                            ),
-                            subtitle: Text(
-                              data[index].lastname,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                            trailing: CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(
-                                data[index].avatar,
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                )
-              ],
-            ),
-          );
-        },
-        error: (err, s) => Text(err.toString()),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+              error: (err, s) => Text(err.toString()),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -71,11 +78,6 @@ class FutureRiverPodExample extends ConsumerWidget {
 
 //UserModel for the API calling
 class UserModel {
-  final int id;
-  final String email;
-  final String firstname;
-  final String lastname;
-  final String avatar;
   UserModel({
     required this.id,
     required this.email,
@@ -93,4 +95,9 @@ class UserModel {
         avatar: json['avatar'] ??
             'https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=740');
   }
+  final int id;
+  final String email;
+  final String firstname;
+  final String lastname;
+  final String avatar;
 }
