@@ -41,6 +41,24 @@ class MobXCountBill extends StatelessWidget {
                 style: const TextStyle(fontSize: 20),
               ),
             ),
+            ReactionBuilder(
+              builder: (context) {
+                return counterBill.reactionForSnackBar!;
+              },
+              child: ElevatedButton.icon(
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                //onPressed: counter.increment,
+                onPressed: counterBill.decrementBurgerPrize,
+                label: const Text(
+                  'Burger Prize',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

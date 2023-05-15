@@ -13,7 +13,7 @@ class FetchResponse {
       response = jsonDecode(result.body);
       print(response);
     } else {
-      throw "Enable to retrieve data";
+      throw 'Enable to retrieve data';
     }
 
     return response;

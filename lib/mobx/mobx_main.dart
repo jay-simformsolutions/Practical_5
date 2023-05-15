@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practical_5/mobx/select_mobx.dart';
+import 'package:practical_5/route/route_generator.dart';
 
 void backgroundService() {
   print('This is from Back Ground Service');
@@ -21,7 +22,7 @@ void main(List<String> arguments) async {
   //   print("Killing Isolate 1");
   //   isolate.kill();
   // });
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,11 +32,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const SelectMobXTopic(),
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
         useMaterial3: true,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.redAccent.shade100,
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
       ),

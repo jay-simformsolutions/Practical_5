@@ -23,7 +23,7 @@ class _FutureObservableExampleState extends State<FutureObservableExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Future Observable Example'),
+        title: const Text('Future Observable Example'),
         centerTitle: true,
       ),
       body: Observer(builder: (context) {

@@ -24,7 +24,7 @@ class MobXHome extends StatelessWidget {
                 return Text(
                   //'Your Counter is :: ${counter.counterValue}',
                   'Your Counter is :: ${mobXCodeGeneration.counter}',
-                  style: TextStyle(fontSize: 25),
+                  style: const TextStyle(fontSize: 25),
                 );
               },
             ),

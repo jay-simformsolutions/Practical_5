@@ -19,6 +19,12 @@ class CounterProviderObserver extends ProviderObserver {
 }
 
 final counterProvider = StateProvider((ref) {
+  ref.onCancel(() {
+    print('Goes into Paused State');
+  });
+  ref.onResume(() {
+    print('Alive again');
+  });
   ref.onDispose(() {
     print('Cycle is remove');
   });
@@ -27,9 +33,18 @@ final counterProvider = StateProvider((ref) {
 });
 
 final secondCounterProvider = StateProvider((ref) {
+  ref.onCancel(() {
+    print('Goes into Paused State');
+  });
+  ref.onResume(() {
+    print('Alive again');
+  });
+  ref.onDispose(() {
+    print('Cycle is remove');
+  });
   final readFirstProvider = ref.watch(counterProvider);
   //
-  print("Updated $readFirstProvider with value");
+  print('Updated $readFirstProvider with value');
 
   return readFirstProvider;
 });

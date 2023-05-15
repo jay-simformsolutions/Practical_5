@@ -9,7 +9,7 @@ class ObServableListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Observable List Page'),
+        title: const Text('Observable List Page'),
         centerTitle: true,
       ),
       body: Column(

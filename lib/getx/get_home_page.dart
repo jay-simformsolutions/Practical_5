@@ -121,8 +121,8 @@ class _GetXHomePageState extends State<GetXHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => GetXSecondPage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const GetXSecondPage()));
                 // Get.to(
                 //   const GetXSecondPage(),
                 //   transition: Transition.fadeIn,

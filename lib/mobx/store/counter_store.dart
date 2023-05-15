@@ -10,13 +10,13 @@ class Counter {
     reset = Action(_reset);
 
     reaction((p0) => _value.value == 3, (p0) {
-      print("dfdsf");
+      print('dfdsf');
     });
     autorun((p0) => transaction(() {
           if (_value.value.isEven) {
-            print("Auto run is called when value is even");
+            print('Auto run is called when value is even');
           } else {
-            print("Auto run is called when value is odd");
+            print('Auto run is called when value is odd');
           }
         }));
     dispose;

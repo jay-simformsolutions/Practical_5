@@ -11,7 +11,7 @@ class ObservableStreamExample extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Observable Stream Example'),
+        title: const Text('Observable Stream Example'),
       ),
       body: Center(
         child: Column(

@@ -3,7 +3,7 @@ import 'package:mobx/mobx.dart';
 
 class CounterBill {
   final mat.BuildContext context;
-
+  ReactionDisposer? reactionForSnackBar;
   CounterBill(this.context) {
     incrementBurgerPrize = Action(_incrementBurgerPrize);
     decrementBurgerPrize = Action(_decrementBurgerPrize);
@@ -11,7 +11,7 @@ class CounterBill {
     decrementPizzaPrize = Action(_decrementPizzaPrize);
     reset = Action(_resetPrize);
 
-    reaction((p0) {
+    reactionForSnackBar = reaction((p0) {
       if (burgerPrize.isNegative || pizzaPrize.isNegative) {
         return true;
       } else {

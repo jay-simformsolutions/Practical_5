@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:practical_5/CupertinoWidgets/cupertino_action_sheet.dart';
+import 'package:practical_5/route/route_generator.dart';
+import 'package:practical_5/route/routes.dart';
 
 void main() {
   // TODO: implement main
-  print("Main is Called");
+  print('Main is Called');
   runApp(MyApp());
 }
 
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() {
-    logger.wtf("New Instance is created");
+    //  logger.wtf('New Instance is created');
     return _MyAppState();
   }
 }
@@ -25,8 +26,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    Logger logger = Logger();
-
     ///For Go Router
     // return MaterialApp.router(
     //   // routeInformationParser:
@@ -113,8 +112,20 @@ class _MyAppState extends State<MyApp> {
     //   ),
     // );
 
+    // return MaterialApp(
+    //   home: Provider(
+    //     create: (context) => HandleIndicator(context),
+    //     child: const ShowAlertDialogAndShowIndicator(),
+    //   ),
+    // );
+
+    // return MaterialApp(
+    //   home: ArticleDetailScreen(),
+    // );
+
     return const MaterialApp(
-      home: CupertinoActionsheetWidget(),
+      initialRoute: Routes.networkHomePage,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

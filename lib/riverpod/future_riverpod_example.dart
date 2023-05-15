@@ -13,7 +13,7 @@ class FutureRiverPodExample extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Future RiverPod Example"),
+        title: const Text('Future RiverPod Example'),
       ),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(userDataProvider.future),

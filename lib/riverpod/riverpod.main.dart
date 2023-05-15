@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practical_5/riverpod/riverpod_common_page.dart';
-import 'package:practical_5/riverpod/riverpod_counter.dart';
 
 void main() => runApp(
-      ProviderScope(
-        observers: [CounterProviderObserver()],
+      const ProviderScope(
+        // observers: [CounterProviderObserver()],
         child: RiverPodApp(),
       ),
     );

@@ -16,6 +16,13 @@ class ApiServices {
       throw Exception(response.reasonPhrase);
     }
   }
+
+  // Future<List<UserModel>> getUserUsingGuard() async {
+  //   state = AsyncValue.loading();
+  //   state = await AsyncValue.guard(() => getUsers());
+  //
+  //   return state;
+  // }
 }
 
 //Expose data in All the Widget
