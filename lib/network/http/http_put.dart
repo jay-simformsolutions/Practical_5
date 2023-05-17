@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:practical_5/network/model/http/http_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:practical_5/network/store/http/http_store.dart';
 
-import '../store/http/http_store.dart';
+import '../model/http/http_model.dart';
 
-class HttpPostMethod extends StatelessWidget {
+class HttpPutMethod extends StatelessWidget {
+  const HttpPutMethod({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final readStore = context.read<HttpStore>();
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Method'),
+        title: Text('Put Method'),
       ),
       body: Center(
         child: Padding(
@@ -39,21 +40,19 @@ class HttpPostMethod extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Enter Email'),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               ElevatedButton(
-                onPressed: () async {
-                  readStore.postData(HttpModel(
-                    firstName: readStore.firstNameController.text,
-                    lastName: readStore.lastNameController.text,
-                    email: readStore.emailController.text,
-                  ));
-                },
-                child: const Text('Submit Data'),
-              ),
-
-              //Text('Added title is ${readUpdate}'),
+                  onPressed: () async {
+                    // debugPrint(
+                    //     'Id will be sent is ${readStore.result[index].userId.toString()}');
+                    readStore.putData(
+                      HttpModel(
+                        firstName: readStore.firstNameController.text,
+                        lastName: readStore.lastNameController.text,
+                        email: readStore.emailController.text,
+                      ),
+                    );
+                  },
+                  child: const Text('Put Data'))
             ],
           ),
         ),

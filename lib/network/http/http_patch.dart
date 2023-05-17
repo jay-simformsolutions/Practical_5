@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:practical_5/network/model/http/http_model.dart';
+import 'package:practical_5/network/store/http/http_store.dart';
 import 'package:provider/provider.dart';
 
-import '../store/http/http_store.dart';
+import '../model/http/http_model.dart';
 
-class HttpPostMethod extends StatelessWidget {
+class HttpPatchMethod extends StatelessWidget {
+  final int index;
+  const HttpPatchMethod({Key? key, required this.index}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final readStore = context.read<HttpStore>();
-
+    print(readStore.emailController.text);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Method'),
+        title: Text('Patch Method'),
       ),
       body: Center(
         child: Padding(
@@ -39,21 +42,19 @@ class HttpPostMethod extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Enter Email'),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               ElevatedButton(
-                onPressed: () async {
-                  readStore.postData(HttpModel(
-                    firstName: readStore.firstNameController.text,
-                    lastName: readStore.lastNameController.text,
-                    email: readStore.emailController.text,
-                  ));
-                },
-                child: const Text('Submit Data'),
-              ),
-
-              //Text('Added title is ${readUpdate}'),
+                  onPressed: () async {
+                    debugPrint(
+                        'Id will be sent is ${readStore.result[index].userId.toString()}');
+                    readStore.patchData(
+                        HttpModel(
+                          firstName: readStore.firstNameController.text,
+                          lastName: readStore.lastNameController.text,
+                          email: readStore.emailController.text,
+                        ),
+                        readStore.result[index].userId.toString());
+                  },
+                  child: const Text('Update Data'))
             ],
           ),
         ),
