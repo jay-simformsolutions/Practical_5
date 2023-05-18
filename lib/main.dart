@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:practical_5/route/navigator_service.dart';
 import 'package:practical_5/route/route_generator.dart';
 import 'package:practical_5/route/routes.dart';
 
@@ -123,9 +124,10 @@ class _MyAppState extends State<MyApp> {
     //   home: ArticleDetailScreen(),
     // );
 
-    return const MaterialApp(
+    return MaterialApp(
       initialRoute: Routes.networkHomePage,
       onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: NavigationService().navigationKey,
     );
   }
 }

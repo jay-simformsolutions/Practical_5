@@ -18,7 +18,12 @@ class NetworkHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.httpPage);
                 },
-                child: const Text('HTTP'))
+                child: const Text('HTTP')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.dioPage);
+                },
+                child: const Text('Dio'))
           ],
         ),
       ),

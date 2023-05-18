@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +12,7 @@ part 'http_store.g.dart';
 
 class HttpStore = _HttpStore with _$HttpStore;
 
-abstract class _HttpStore with Store {
+abstract class _HttpStore with Store implements Disposable {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -156,5 +157,13 @@ abstract class _HttpStore with Store {
     firstNameController.text = result[index].firstName;
     lastNameController.text = result[index].lastName;
     emailController.text = result[index].email;
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    // TODO: implement dispose
   }
 }
