@@ -7,12 +7,13 @@ import 'package:practical_5/network/model/json_placeholder_model.dart';
 import 'package:practical_5/route/navigator_service.dart';
 
 import '../../model/http/http_model.dart';
+import '../../tmdb/model/tmdb_model.dart';
 
 part 'dio_store.g.dart';
 
 class DioStore extends _DioStore with _$DioStore {
   static const Map<String, dynamic> header = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   };
 }
 
@@ -20,6 +21,9 @@ abstract class _DioStore with Store implements Disposable {
   //ObservableList<HttpModel> dioResult = ObservableList.of([]);
   @observable
   List<HttpModel> dioResult = [];
+
+  @observable
+  List<TMDBModel> mockDataResult = [];
 
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -29,7 +33,8 @@ abstract class _DioStore with Store implements Disposable {
 
   _DioStore() {
     //initInterceptors();
-    dioGetData();
+    // dioGetData();
+    getMockData();
     // SingletonDio().prepareJar();
     //LoggingInterceptors();
     //dioGetData();
@@ -95,6 +100,39 @@ abstract class _DioStore with Store implements Disposable {
   //   //debugPrint('DioResult is $dioResult');
   // }
 
+  static const String mockApi =
+      'https://6466f9a32ea3cae8dc22d900.mockapi.io/api/v1/';
+  Future<List<TMDBModel>> getMockData() async {
+    try {
+      Response response =
+          await SingletonDio().getDio.get(('http://surl.li/heyvj'));
+      if (response.statusCode == 200) {
+        var searchJsonData = response.data;
+        debugPrint('Status Message is ${response.statusMessage}');
+        for (int i = 0; i < response.redirects.length; i++) {
+          debugPrint(
+              'Redirects location is ${response.redirects[i].location} and Status code is ${response.redirects[i].statusCode} ');
+        }
+        debugPrint('Path is ${response.requestOptions.path}');
+        //debugPrint(
+        //  'Redirect Record is ${response.redirects.first.location} and ${response.redirects.first.method} and ${response.redirects.first.statusCode}');
+        debugPrint('Header is ${response.requestOptions.headers}');
+        debugPrint('Extra Parameter is ${response.extra}');
+        debugPrint('Real URI URI is ${response.realUri}');
+        debugPrint(
+            ' max redirects is ${response.requestOptions.maxRedirects.toString()}');
+        response.isRedirect = false;
+        mockDataResult = searchJsonData
+            .map<TMDBModel>((e) => TMDBModel.fromJson(e))
+            .toList();
+        //  debugPrint('Search Result is $mockDataResult');
+      }
+    } catch (e) {
+      debugPrint('Error Occured at $e');
+    }
+    return mockDataResult;
+  }
+
   @observable
   List<JsonPlaceHolderTodos> todosResult = [];
 
@@ -145,7 +183,7 @@ abstract class _DioStore with Store implements Disposable {
     try {
       if (response.statusCode == 200) {
         var responseData = response.data;
-        debugPrint('Updated data is $responseData');
+        //   debugPrint('Updated data is $responseData');
         result = HttpModel.fromJson(responseData);
       } else {
         debugPrint('Oops!! Something went Wrong');
@@ -304,7 +342,7 @@ abstract class _DioStore with Store implements Disposable {
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
-    SingletonDio().getDio.close();
+    //SingletonDio().getDio.close();
     debugPrint('Dispose is Called');
     // TODO: implement dispose
   }

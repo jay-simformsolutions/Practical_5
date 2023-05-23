@@ -8,4 +8,5 @@ class Routes {
   static const networkHomePage = '/networkHomePage';
   static const httpPage = '/httpPage';
   static const dioPage = '/dioPage';
+  static const tmdbPage = '/tmdbPage';
 }

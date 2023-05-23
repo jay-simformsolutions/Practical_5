@@ -8,6 +8,8 @@ import 'package:practical_5/network/http/http_methods.dart';
 import 'package:practical_5/network/network_home_page.dart';
 import 'package:practical_5/route/routes.dart';
 
+import '../network/tmdb/tmdb_page.dart';
+
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -36,6 +38,10 @@ class RouteGenerator {
       case Routes.dioPage:
         return MaterialPageRoute(
           builder: (_) => const DioMethods(),
+        );
+      case Routes.tmdbPage:
+        return MaterialPageRoute(
+          builder: (_) => const TMDBPage(),
         );
 
       default:

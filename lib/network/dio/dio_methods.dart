@@ -23,8 +23,7 @@ class DioMethods extends StatelessWidget {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      const DioGetMethod().withProvider(DioStore()),
+                  builder: (_) => const DioGetMethod().withProvider(DioStore()),
                 ),
               ),
               child: const Text('Get'),
@@ -33,7 +32,7 @@ class DioMethods extends StatelessWidget {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
+                  builder: (_) =>
                       const DioPostMethod().withProvider(DioStore()),
                 ),
               ),
@@ -43,7 +42,7 @@ class DioMethods extends StatelessWidget {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const DioPatchMethod(
+                  builder: (_) => const DioPatchMethod(
                     index: 0,
                   ).withProvider(DioStore()),
                 ),

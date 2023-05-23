@@ -23,7 +23,12 @@ class NetworkHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.dioPage);
                 },
-                child: const Text('Dio'))
+                child: const Text('Dio')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.tmdbPage);
+                },
+                child: const Text('TMDB'))
           ],
         ),
       ),
