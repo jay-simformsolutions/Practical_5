@@ -29,6 +29,8 @@ abstract class _DioStore with Store implements Disposable {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+  final getDio = SingletonDio().getDio;
+
   String baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
   _DioStore() {
@@ -104,8 +106,7 @@ abstract class _DioStore with Store implements Disposable {
       'https://6466f9a32ea3cae8dc22d900.mockapi.io/api/v1/';
   Future<List<TMDBModel>> getMockData() async {
     try {
-      Response response =
-          await SingletonDio().getDio.get(('http://surl.li/heyvj'));
+      Response response = await getDio.get(('http://surl.li/heyvj'));
       if (response.statusCode == 200) {
         var searchJsonData = response.data;
         debugPrint('Status Message is ${response.statusMessage}');
@@ -157,8 +158,7 @@ abstract class _DioStore with Store implements Disposable {
   }
 
   Future<void> dioPostData(HttpModel dioHttpModel) async {
-    final response =
-        await SingletonDio().getDio.post(baseUrl, data: dioHttpModel.toJson());
+    final response = await getDio.post(baseUrl, data: dioHttpModel.toJson());
 
     try {
       if (response.statusCode == 201) {
@@ -176,8 +176,7 @@ abstract class _DioStore with Store implements Disposable {
     String updateURL =
         'https://api-experiment-a08fa-default-rtdb.firebaseio.com/userprofile/$userId.json';
     debugPrint('Updated URL is $updateURL');
-    final response =
-        await SingletonDio().getDio.patch(updateURL, data: httpModel.toJson());
+    final response = await getDio.patch(updateURL, data: httpModel.toJson());
     HttpModel result;
 
     try {
@@ -198,7 +197,7 @@ abstract class _DioStore with Store implements Disposable {
         'https://api-experiment-a08fa-default-rtdb.firebaseio.com/userprofile/$userId.json';
 
     try {
-      Response response = await SingletonDio().getDio.delete(src);
+      Response response = await getDio.delete(src);
 
       if (response.statusCode == 200) {
         debugPrint('Deleted');

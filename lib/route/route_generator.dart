@@ -6,6 +6,7 @@ import 'package:practical_5/mobx/select_mobx.dart';
 import 'package:practical_5/network/dio/dio_methods.dart';
 import 'package:practical_5/network/http/http_methods.dart';
 import 'package:practical_5/network/network_home_page.dart';
+import 'package:practical_5/network/retrofit/retrofit_methods.dart';
 import 'package:practical_5/route/routes.dart';
 
 import '../network/tmdb/tmdb_page.dart';
@@ -42,6 +43,10 @@ class RouteGenerator {
       case Routes.tmdbPage:
         return MaterialPageRoute(
           builder: (_) => const TMDBPage(),
+        );
+      case Routes.retrofitPage:
+        return MaterialPageRoute(
+          builder: (_) => const RetrofitMethods(),
         );
 
       default:

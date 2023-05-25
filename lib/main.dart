@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:practical_5/network/tmdb/store/tmdb_http_store.dart';
 import 'package:practical_5/route/navigator_service.dart';
 import 'package:practical_5/route/route_generator.dart';
 import 'package:practical_5/route/routes.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   // TODO: implement main
@@ -29,6 +27,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    // if (const bool.fromEnvironment('dart.vm.product')) {
+    //   debugPrint('In Release mode');
+    // } else if (const bool.fromEnvironment('dart.vm.profile')) {
+    //   debugPrint('Profile');
+    // } else {
+    //   debugPrint('In Debug Mode');
+    // }
+
     ///For Go Router
     // return MaterialApp.router(
     //   // routeInformationParser:
@@ -126,13 +132,11 @@ class _MyAppState extends State<MyApp> {
     //   home: ArticleDetailScreen(),
     // );
 
-    return Provider(
-      create: (_) => TMDBHttpStore(),
-      child: MaterialApp(
-        initialRoute: Routes.networkHomePage,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        navigatorKey: NavigationService().navigationKey,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.networkHomePage,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: NavigationService().navigationKey,
     );
   }
 }
