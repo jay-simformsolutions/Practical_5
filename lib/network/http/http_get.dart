@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:practical_5/extension/provider_extension.dart';
@@ -24,7 +27,11 @@ class HttpGetMethod extends StatelessWidget {
             : ListView.builder(
                 itemCount: readStore.result.length,
                 itemBuilder: (_, index) {
-                  debugPrint('User Id is ${readStore.result[index].userId}');
+                  log('User id is ${readStore.result[index].userId}');
+                  stdout.writeln(
+                      'User Id from debugPrint is ${readStore.result[index].userId}');
+                  // f.debugPrint(
+                  //     'User Id from debugPrint is ${readStore.result[index].userId}');
                   return GestureDetector(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

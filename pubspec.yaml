@@ -51,10 +51,10 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   dio: ^5.1.2
   pretty_http_logger: ^0.2.1
-#  retrofit: ^4.0.1
-#  retrofit_generator: ^7.0.1
-#  json_serializable: ^6.6.2
-#  json_annotation: ^4.8.1
+  retrofit: ^4.0.1
+  retrofit_generator: ^7.0.1
+  json_serializable: ^6.6.2
+  json_annotation: ^4.8.1
 
 
 

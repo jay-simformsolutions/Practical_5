@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:practical_5/network/dio/dio_singleton.dart';
 import 'package:practical_5/network/model/json_placeholder_model.dart';
+import 'package:practical_5/network/status_code.dart';
 import 'package:practical_5/route/navigator_service.dart';
 
 import '../../model/http/http_model.dart';
@@ -29,7 +30,7 @@ abstract class _DioStore with Store implements Disposable {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  final getDio = SingletonDio().getDio;
+  final dio = SingletonDio().dio;
 
   String baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -43,7 +44,7 @@ abstract class _DioStore with Store implements Disposable {
   }
 
   // void initInterceptors() {
-  //   SingletonDio().getDio.interceptors.add(
+  //   SingletonDio().dio.interceptors.add(
   //         InterceptorsWrapper(
   //           onRequest: (requestOptions, handler) {
   //             logger.i(
@@ -65,7 +66,7 @@ abstract class _DioStore with Store implements Disposable {
   // }
 
   // Future<List<HttpModel>> dioGetData() async {
-  //   final response = await SingletonDio().getDio.get(baseUrl);
+  //   final response = await SingletonDio().dio.get(baseUrl);
   //   List<HttpModel> tempData = [];
   //
   //   try {
@@ -88,7 +89,7 @@ abstract class _DioStore with Store implements Disposable {
   //
   // Future<void> dioPostData(HttpModel dioHttpModel) async {
   //   final response =
-  //       await SingletonDio().getDio.post(baseUrl, data: dioHttpModel.toJson());
+  //       await SingletonDio().dio.post(baseUrl, data: dioHttpModel.toJson());
   //
   //   try {
   //     if (response.statusCode == 201) {
@@ -106,7 +107,7 @@ abstract class _DioStore with Store implements Disposable {
       'https://6466f9a32ea3cae8dc22d900.mockapi.io/api/v1/';
   Future<List<TMDBModel>> getMockData() async {
     try {
-      Response response = await getDio.get(('http://surl.li/heyvj'));
+      Response response = await dio.get(('http://surl.li/heyvj'));
       if (response.statusCode == 200) {
         var searchJsonData = response.data;
         debugPrint('Status Message is ${response.statusMessage}');
@@ -138,11 +139,11 @@ abstract class _DioStore with Store implements Disposable {
   List<JsonPlaceHolderTodos> todosResult = [];
 
   Future<List<JsonPlaceHolderTodos>> dioGetData() async {
-    final Response response = await SingletonDio().getDio.get(baseUrl);
+    final Response response = await SingletonDio().dio.get(baseUrl);
 
     print(response.data);
     try {
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var jsonData = response.data;
         todosResult = jsonData
             .map<JsonPlaceHolderTodos>((e) => JsonPlaceHolderTodos.fromJson(e))
@@ -158,10 +159,10 @@ abstract class _DioStore with Store implements Disposable {
   }
 
   Future<void> dioPostData(HttpModel dioHttpModel) async {
-    final response = await getDio.post(baseUrl, data: dioHttpModel.toJson());
+    final response = await dio.post(baseUrl, data: dioHttpModel.toJson());
 
     try {
-      if (response.statusCode == 201) {
+      if (response.statusCode == StatusCode.created) {
         debugPrint('Data is Fetched');
       } else {
         debugPrint('Something is Wrong!!!');
@@ -176,11 +177,11 @@ abstract class _DioStore with Store implements Disposable {
     String updateURL =
         'https://api-experiment-a08fa-default-rtdb.firebaseio.com/userprofile/$userId.json';
     debugPrint('Updated URL is $updateURL');
-    final response = await getDio.patch(updateURL, data: httpModel.toJson());
+    final response = await dio.patch(updateURL, data: httpModel.toJson());
     HttpModel result;
 
     try {
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var responseData = response.data;
         //   debugPrint('Updated data is $responseData');
         result = HttpModel.fromJson(responseData);
@@ -197,9 +198,9 @@ abstract class _DioStore with Store implements Disposable {
         'https://api-experiment-a08fa-default-rtdb.firebaseio.com/userprofile/$userId.json';
 
     try {
-      Response response = await getDio.delete(src);
+      Response response = await dio.delete(src);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         debugPrint('Deleted');
       }
     } catch (e) {
@@ -341,7 +342,7 @@ abstract class _DioStore with Store implements Disposable {
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
-    //SingletonDio().getDio.close();
+    //SingletonDio().dio.close();
     debugPrint('Dispose is Called');
     // TODO: implement dispose
   }

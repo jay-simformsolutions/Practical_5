@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 import 'package:practical_5/network/tmdb/model/tmdb_model.dart';
 
+import '../../status_code.dart';
+
 part 'tmdb_http_store.g.dart';
 
 class TMDBHttpStore = _TMDBHttpStore with _$TMDBHttpStore;
@@ -122,7 +124,7 @@ abstract class _TMDBHttpStore with Store {
         'https://6466f9a32ea3cae8dc22d900.mockapi.io/api/v1/tmdb_movies/?title=$query';
     try {
       Response response = await http.get(Uri.parse(searchURL));
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var searchJsonData = json.decode(response.body);
         searchResult = searchJsonData
             .map<TMDBModel>((e) => TMDBModel.fromJson(e))
@@ -141,7 +143,7 @@ abstract class _TMDBHttpStore with Store {
       Response response =
           await http.post(Uri.parse(mockPutString), body: tmdbModel.toJson());
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == StatusCode.created) {
         debugPrint('Data is Added');
       }
     } catch (e) {
@@ -154,7 +156,7 @@ abstract class _TMDBHttpStore with Store {
       Response response =
           await http.get(Uri.parse('${mockApi}favourite_movies'));
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var favouriteJsonData = json.decode(response.body);
         favouriteMovieList = favouriteJsonData
             .map<TMDBModel>((e) => TMDBModel.fromJson(e))
@@ -174,7 +176,7 @@ abstract class _TMDBHttpStore with Store {
         Uri.parse('${mockApi}/favourite_movies'),
         body: tmdbModel.toJson(),
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == StatusCode.created) {
         debugPrint('Favourite List is $favouriteMovieList');
         debugPrint('${tmdbModel.title} is successfully added in list');
       } else {
@@ -190,7 +192,7 @@ abstract class _TMDBHttpStore with Store {
     try {
       Response response =
           await http.delete(Uri.parse('${mockApi}favourite_movies/$id'));
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         debugPrint('Movie deleted from favourite list');
       }
     } catch (e) {

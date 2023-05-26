@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:practical_5/network/dio/dio_singleton.dart';
 
+import '../../status_code.dart';
 import '../model/tmdb_model.dart';
 
 part 'tmdb_dio_store.g.dart';
@@ -18,7 +19,7 @@ abstract class _TMDBDioStore with Store {
     getFavouriteList();
   }
 
-  final getDio = SingletonDio().getDio;
+  final dio = SingletonDio().dio;
 
   @observable
   NetworkState appState = NetworkState.initial;
@@ -37,9 +38,9 @@ abstract class _TMDBDioStore with Store {
   Future<List<TMDBModel>> dioGetMockData() async {
     try {
       appState = NetworkState.loading;
-      Response response = await getDio.get('tmd_movies');
+      Response response = await dio.get('tmd_movies');
       debugPrint('In Loading State');
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var jsonData = response.data;
         dioMockDataResult =
             jsonData.map<TMDBModel>((e) => TMDBModel.fromJson(e)).toList();
@@ -55,8 +56,8 @@ abstract class _TMDBDioStore with Store {
   Future<List<TMDBModel>> searchMovies(String query) async {
     try {
       Response response =
-          await getDio.get('tmdb_movies', queryParameters: {'title': query});
-      if (response.statusCode == 200) {
+          await dio.get('tmdb_movies', queryParameters: {'title': query});
+      if (response.statusCode == StatusCode.success) {
         var searchJsonData = response.data;
         dioSearchResult = searchJsonData
             .map<TMDBModel>((e) => TMDBModel.fromJson(e))
@@ -100,9 +101,9 @@ abstract class _TMDBDioStore with Store {
 
   Future<List<TMDBModel>> getFavouriteList() async {
     try {
-      Response response = await getDio.get('favourite_movies');
+      Response response = await dio.get('favourite_movies');
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var favouriteJsonData = response.data;
         favouriteMovieList = favouriteJsonData
             .map<TMDBModel>((e) => TMDBModel.fromJson(e))
@@ -118,11 +119,11 @@ abstract class _TMDBDioStore with Store {
   Future addToFavouriteMovie(TMDBModel tmdbModel) async {
     print(tmdbModel.id);
     try {
-      Response response = await getDio.post(
+      Response response = await dio.post(
         '/favourite_movies',
         data: tmdbModel.toJson(),
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == StatusCode.created) {
         debugPrint('Favourite List is $favouriteMovieList');
         debugPrint('${tmdbModel.title} is successfully added in list');
       } else {
@@ -136,7 +137,7 @@ abstract class _TMDBDioStore with Store {
   void deleteFavouriteMovies(String id) async {
     print('id $id');
     try {
-      Response response = await getDio.delete('favourite_movies/$id');
+      Response response = await dio.delete('favourite_movies/$id');
       if (response.statusCode == 200) {
         debugPrint('Movie deleted from favourite list');
       }

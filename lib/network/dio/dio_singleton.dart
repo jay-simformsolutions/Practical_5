@@ -26,10 +26,11 @@ class SingletonDio {
   // );
   // ..interceptors.add(LogInterceptor());
 
-  Dio getDio = Dio(
+  Dio dio = Dio(
     BaseOptions(
-      sendTimeout: const Duration(microseconds: 5000),
-      receiveTimeout: const Duration(milliseconds: 5000),
+      connectTimeout: const Duration(seconds: 5),
+      sendTimeout: const Duration(microseconds: 0),
+      receiveTimeout: const Duration(seconds: 2),
       baseUrl: 'https://6466f9a32ea3cae8dc22d900.mockapi.io/api/v1/',
       followRedirects: true,
       headers: DioStore.header,

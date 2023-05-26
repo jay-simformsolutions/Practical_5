@@ -8,6 +8,8 @@ import 'package:mobx/mobx.dart';
 import 'package:practical_5/network/model/http/http_model.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
+import '../../status_code.dart';
+
 part 'http_store.g.dart';
 
 class HttpStore = _HttpStore with _$HttpStore;
@@ -37,7 +39,7 @@ abstract class _HttpStore with Store implements Disposable {
     );
 
     try {
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var resultData = jsonDecode(response.body) as Map<String, dynamic>;
         debugPrint('Result data is $resultData');
         resultData.forEach((profileId, profileData) {
@@ -84,7 +86,7 @@ abstract class _HttpStore with Store implements Disposable {
           httpModel.toJson(),
         ),
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == StatusCode.created) {
         debugPrint('Data Added Successfully');
       }
     } catch (e) {
@@ -104,7 +106,7 @@ abstract class _HttpStore with Store implements Disposable {
     debugPrint('Data is updated $data');
 
     try {
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var responseData = jsonDecode(response.body);
         // debugPrint('Updated data is $responseData');
         result = HttpModel.fromJson(responseData);
@@ -126,7 +128,7 @@ abstract class _HttpStore with Store implements Disposable {
     debugPrint('Data is updated $data');
 
     try {
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         var responseData = jsonDecode(response.body);
         debugPrint('Updated data is $responseData');
         result = HttpModel.fromJson(responseData);
@@ -146,7 +148,7 @@ abstract class _HttpStore with Store implements Disposable {
     try {
       Response response = await delete(Uri.parse(src));
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == StatusCode.success) {
         debugPrint('Deleted');
       }
     } catch (e) {

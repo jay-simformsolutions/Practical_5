@@ -24,4 +24,9 @@ extension AccessParentProvider on Widget {
         },
         child: this,
       );
+
+  Widget withCommonProvider<T>(T provider) => Provider.value(
+        value: provider,
+        child: this,
+      );
 }
