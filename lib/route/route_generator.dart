@@ -4,7 +4,6 @@ import 'package:practical_5/mobx/change_parent_properties/modular/child_class_mo
 import 'package:practical_5/mobx/change_parent_properties/modular/modular_child_class.dart';
 import 'package:practical_5/mobx/select_mobx.dart';
 import 'package:practical_5/network/dio/dio_methods.dart';
-import 'package:practical_5/network/http/http_methods.dart';
 import 'package:practical_5/network/network_home_page.dart';
 import 'package:practical_5/network/retrofit/retrofit_methods.dart';
 import 'package:practical_5/route/routes.dart';
@@ -32,10 +31,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const NetworkHomePage(),
         );
-      case Routes.httpPage:
-        return MaterialPageRoute(
-          builder: (_) => const HttpMethods(),
-        );
+      // case Routes.httpPage:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const HttpMethods(),
+      //   );
       case Routes.dioPage:
         return MaterialPageRoute(
           builder: (_) => const DioMethods(),

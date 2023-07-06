@@ -9,7 +9,7 @@ part of 'retrofit_api_service.dart';
 TMDBRetrofitModel _$TMDBRetrofitModelFromJson(Map<String, dynamic> json) =>
     TMDBRetrofitModel(
       id: json['id'] as String?,
-      original_title: json['original_title'] as String? ?? '',
+      original_title: json['original_title'] as String,
       title: json['title'] as String,
       overview: json['overview'] as String,
       release_date: json['release_date'] as String,

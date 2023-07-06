@@ -138,5 +138,9 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: NavigationService().navigationKey,
     );
+
+    // return const MaterialApp(
+    //   home: FlexibleClass(),
+    // );
   }
 }

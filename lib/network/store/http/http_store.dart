@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 import 'package:practical_5/network/model/http/http_model.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
@@ -56,31 +56,31 @@ abstract class _HttpStore with Store implements Disposable {
     return result;
   }
 
-  // Future<void> getResponseOnRefresh() async {
-  //   final response = await http.get(
-  //     Uri.parse(url),
-  //     headers: {'Content-Type': 'application/json'},
-  //   );
-  //
-  //   try {
-  //     if (response.statusCode == 200) {
-  //       var resultData = jsonDecode(response.body) as Map<String, dynamic>;
-  //       debugPrint('Result data is $resultData');
-  //       resultData.forEach((profileId, profileData) {
-  //         result.add(HttpModel.fromJson(profileData, profileId));
-  //       });
-  //       debugPrint('result is $result');
-  //     } else {
-  //       debugPrint('Sorry!! Get an Error');
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //   }
-  // }
+  Future<void> getResponseOnRefresh() async {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    try {
+      if (response.statusCode == 200) {
+        var resultData = jsonDecode(response.body) as Map<String, dynamic>;
+        debugPrint('Result data is $resultData');
+        resultData.forEach((profileId, profileData) {
+          result.add(HttpModel.fromJson(profileData, profileId));
+        });
+        debugPrint('result is $result');
+      } else {
+        debugPrint('Sorry!! Get an Error');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   void postData(HttpModel httpModel) async {
     try {
-      Response response = await httpClient.post(
+      final response = await httpClient.post(
         Uri.parse(url),
         body: jsonEncode(
           httpModel.toJson(),
@@ -146,7 +146,7 @@ abstract class _HttpStore with Store implements Disposable {
         'https://api-experiment-a08fa-default-rtdb.firebaseio.com/userprofile/$userId.json';
 
     try {
-      Response response = await delete(Uri.parse(src));
+      final response = await http.delete(Uri.parse(src));
 
       if (response.statusCode == StatusCode.success) {
         debugPrint('Deleted');

@@ -95,7 +95,7 @@ abstract class _ArticleDetailsStore with Store {
   void changeIt() {
     debugPrint('Function is called');
     articleList[0].value.title = 'Title change Using Make model observable';
-    articleList[0].reportChanged();
+    articleList[0].reportRead();
     debugPrint('After changing title value is ${articleList[0].value.title}');
   }
 }

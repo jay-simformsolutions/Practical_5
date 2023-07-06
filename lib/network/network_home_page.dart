@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practical_5/route/routes.dart';
 
+import 'http/http_methods.dart';
+
 class NetworkHomePage extends StatelessWidget {
   const NetworkHomePage({Key? key}) : super(key: key);
 
@@ -16,7 +18,12 @@ class NetworkHomePage extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.httpPage);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    maintainState: false,
+                    fullscreenDialog: true,
+                    builder: (_) => const HttpMethods(),
+                  ));
+                  //  Navigator.pushNamed(context, Routes.httpPage);
                 },
                 child: const Text('HTTP')),
             ElevatedButton(
